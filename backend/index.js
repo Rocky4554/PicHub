@@ -52,6 +52,11 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Image AI API");
 });
 
+// Serve index.html for all frontend routes (important for Clerk SPA routing)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('❗ Error stack:', err.stack);
