@@ -4,10 +4,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
 import imageRoutes from './routes/imageroutes.js';
 import userRoutes from './routes/userroutes.js';
-import downloadimageroutes from './routes/downloadimageroutes.js';
 import contactRoutes from './routes/contact.js';
 
 dotenv.config();
