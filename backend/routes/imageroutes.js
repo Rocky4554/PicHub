@@ -1,3 +1,4 @@
+// routes/imageRoutes.js
 import express from 'express';
 import { 
   generateImage, 
@@ -23,6 +24,5 @@ router.get('/saved-images', getSavedImages);
 router.get('/saved-images/:id', getImageById);
 router.delete('/saved-images/:id', deleteImage);
 router.get('/download-image/:fileName', downloadSavedImage);
-
 
 export default router;

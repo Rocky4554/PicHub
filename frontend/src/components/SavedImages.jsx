@@ -14,7 +14,7 @@ const SavedImages = ({ images, onLoad, onDelete, onRefresh }) => {
       const fileName = image.name;
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/images/download/${encodeURIComponent(fileName)}`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/images/download-image/${encodeURIComponent(fileName)}`,
         {
           method: 'GET',
           headers: {

@@ -4,9 +4,10 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import imageRoutes from './routes/imageroutes.js';
-import userRoutes from './routes/userroutes.js';
-import contactRoutes from './routes/contact.js';
+import imageRoutes from './routes/imageroutes.js';  // Make sure filename matches
+import userRoutes from './routes/userroutes.js';    // Make sure filename matches  
+import contactRoutes from './routes/contactRoutes.js'; // Make sure filename matches
+
 
 dotenv.config();
 
@@ -45,14 +46,10 @@ const distPath = path.join(__dirname, 'dist');
 
 app.use(express.static(distPath));
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the Image AI API");
-});
 
-// Serve index.html for all frontend routes (important for Clerk SPA routing)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(distPath, 'index.html'));
+// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -60,10 +57,17 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// // Start server
-// app.listen(PORT, () => {
-//   console.log(`🚀 Server running on port ${PORT}`);
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(distPath, 'index.html'));
 // });
+app.get(/^(?!\/api).*$/, (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
 
 
-export default app; // vercel don't need app.listen
+// export default app; // vercel don't need app.listen
