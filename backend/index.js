@@ -38,7 +38,6 @@ mongoose.connect(MONGODB_URI)
 // Routes
 app.use('/api/images', imageRoutes);
 app.use('/api/users', userRoutes);
-app.use(downloadimageroutes);
 app.use('/api',contactRoutes)
 
 // Serve frontend (Vite dist folder)
