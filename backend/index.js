@@ -18,7 +18,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 // Middleware
 const corsOptions = {
-  origin: 'https://localhost:5173', // Allow specific origin
+  origin: true, // Allow specific origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
   credentials: true, // Allow cookies/auth headers
