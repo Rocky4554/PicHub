@@ -19,8 +19,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const corsOptions = {
   origin: [
     'http://localhost:3000',        // Local development
-    'http://localhost:5173',        // Vite dev server
-    'https://pic-hub-lilac.vercel.app']  // Your deployed Vercel app
+    'http://localhost:5173']  // Your deployed Vercel app
   , // Allow specific origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
@@ -69,9 +68,9 @@ app.get(/^(?!\/api).*$/, (req, res) => {
 });
 
 // Start server
-// app.listen(PORT, () => {
-//   console.log(`🚀 Server running on port ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
 
 
-export default app; // vercel don't need app.listen
+// export default app; // vercel don't need app.listen

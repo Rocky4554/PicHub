@@ -3,6 +3,7 @@ import ImageCard from './ImageCard';
 
 const SavedImages = ({ images, onLoad, onDelete, onRefresh }) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
   const handleDownload = async (image) => {
     try {
@@ -14,7 +15,7 @@ const SavedImages = ({ images, onLoad, onDelete, onRefresh }) => {
       const fileName = image.name;
 
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/images/download-image/${encodeURIComponent(fileName)}`,
+        `${API_BASE_URL}/api/images/download-image/${encodeURIComponent(fileName)}`,
         {
           method: 'GET',
           headers: {

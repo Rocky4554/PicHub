@@ -1,6 +1,6 @@
 // 1. User Actions (Actions/user-actions.js)
 import { toast } from 'react-toastify';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 // Function to sync user with database
 export const syncUserWithDatabase = async (user) => {
