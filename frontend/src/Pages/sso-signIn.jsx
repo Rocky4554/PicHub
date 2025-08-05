@@ -1,21 +1,27 @@
+// SsoCallback.jsx
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSignIn } from '@clerk/clerk-react';
 
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth} from "@clerk/clerk-react";
-
-export default function SSOCallback() {
-  const { isSignedIn, isLoaded } = useAuth();
+const SsoCallback = () => {
+  const { handleRedirectCallback } = useSignIn();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoaded) {
-      if (isSignedIn) {
-        navigate("/sample");
-      } else {
-        navigate("/sign-up");
+    const handleSSO = async () => {
+      try {
+        await handleRedirectCallback();
+        navigate('/');
+      } catch (err) {
+        console.error('SSO Callback failed:', err);
+        navigate('/sign-in');
       }
-    }
-  }, [isLoaded, isSignedIn]);
+    };
 
-  return <p>Processing SSO login...</p>;
-}
+    handleSSO();
+  }, []);
+
+  return <p>Redirecting...</p>;
+};
+
+export default SsoCallback;
