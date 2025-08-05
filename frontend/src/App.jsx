@@ -36,9 +36,8 @@
 
 //   export default App;
 
+//////////////////////////////////////////////////////////
 
-// App.jsx
-// App.jsx
 import React from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "../src/Pages/Homepage.jsx";
