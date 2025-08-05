@@ -19,7 +19,9 @@ const MONGODB_URI = process.env.MONGODB_URI;
 const corsOptions = {
   origin: [
     'http://localhost:3000',        // Local development
-    'http://localhost:5173','https://pic-hub-lilac.vercel.app']  // Your deployed Vercel app
+    'http://localhost:5173',
+  'https://pic-hub-git-main-rockys-projects-8436af2b.vercel.app',
+    'https://pic-hub-one.vercel.app']  // Your deployed Vercel app
   , // Allow specific origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
