@@ -3,6 +3,7 @@ import User from '../modals/User.js';
 // Create or update user from Clerk webhook/signin
 export const createOrUpdateUser = async (req, res) => {
   try {
+        console.log('Received body:', req.body);
     const { userId, name, email } = req.body;
     
     // Check if user already exists
