@@ -84,7 +84,7 @@ const ContactForm = () => {
     });
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/contact-us`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact/contact-us`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

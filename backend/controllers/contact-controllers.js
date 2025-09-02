@@ -1,8 +1,10 @@
 // controllers/contactController.js
  import { sendThankYouEmail, sendNotificationEmail } from '../utils/emailServices.js';
+ import { dbConnect } from "../lib/dbconnect.js";
 
 const handleContactForm = async (req, res) => {
   try {
+    await dbConnect(); // ensure connection only for this route
     const { name, email, message } = req.body;
 
     // Validate required fields
