@@ -4,10 +4,6 @@
     {
       "src": "index.js",
       "use": "@vercel/node"
-    },
-    {
-      "src": "dist/**/*",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -16,25 +12,8 @@
       "dest": "/index.js"
     },
     {
-      "src": "/assets/(.*)",
-      "dest": "/dist/assets/$1"
-    },
-    {
-      "src": "/sample-images/(.*)",
-      "dest": "/dist/sample-images/$1"
-    },
-    {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|json))",
-      "dest": "/dist/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "/dist/index.html"
     }
-  ],
-  "functions": {
-    "index.js": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
