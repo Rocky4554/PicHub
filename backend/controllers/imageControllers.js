@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import imagekit from "../utils/imagekit.js";
 import path from "path";
 import axios from "axios";
+import { dbConnect } from "../lib/dbconnect.js";
 
 dotenv.config();
 
@@ -92,6 +93,7 @@ export const editImage = async (req, res) => {
 
 export const saveImage = async (req, res) => {
   try {
+     await dbConnect(); // ensure connection only for this route
     const { base64, mimeType, prompt, userId } = req.body;
     if (!base64 || !mimeType || !prompt || !userId) {
       return res.status(400).json({ error: "Missing required fields" });

@@ -1,8 +1,10 @@
 import User from '../modals/User.js';
+import { dbConnect } from "../lib/dbconnect.js";
 
 // Create or update user from Clerk webhook/signin
 export const createOrUpdateUser = async (req, res) => {
   try {
+     await dbConnect(); // ensure connection only for this route
         console.log('Received body:', req.body);
     const { userId, name, email } = req.body;
     
@@ -51,7 +53,9 @@ export const createOrUpdateUser = async (req, res) => {
 
 // Get user by userId
 export const getUserById = async (req, res) => {
+  
   try {
+     await dbConnect(); // ensure connection only for this route
     const { userId } = req.params;
     const user = await User.findOne({ userId });
     
