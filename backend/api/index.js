@@ -83,9 +83,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import imageRoutes from './routes/imageroutes.js';
-import userRoutes from './routes/userroutes.js';
-import contactRoutes from './routes/contactRoutes.js';
+import imageRoutes from '../routes/imageroutes.js';
+import userRoutes from '../routes/userroutes.js';
+import contactRoutes from '../routes/contactRoutes.js';
 
 dotenv.config();
 
@@ -108,13 +108,16 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// MongoDB Connection (Vercel-friendly)
+// MongoDB Connection (Connect immediately)
 let isConnected = false;
 
 const connectDB = async () => {
   if (isConnected) return;
   
   try {
+    console.log('🔄 Attempting to connect to MongoDB...');
+    console.log('MONGODB_URI exists:', !!process.env.MONGODB_URI);
+    
     await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 30000,
       socketTimeoutMS: 45000,
@@ -130,7 +133,10 @@ const connectDB = async () => {
   }
 };
 
-// Connect to database before each request
+// Connect immediately when server starts
+connectDB().catch(console.error);
+
+// Database middleware for each request
 app.use(async (req, res, next) => {
   try {
     await connectDB();
@@ -146,10 +152,10 @@ app.use('/api/images', imageRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/contact', contactRoutes);
 
-// Serve static files
+// Serve static files from dist folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const distPath = path.join(__dirname, 'dist');
+const distPath = path.join(__dirname, '../dist'); // Go up one level to reach dist
 
 app.use(express.static(distPath));
 
@@ -169,6 +175,7 @@ if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📁 Serving static files from: ${distPath}`);
   });
 }
 
