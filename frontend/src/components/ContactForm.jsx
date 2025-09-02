@@ -76,7 +76,7 @@ const ContactForm = () => {
 
     // Debug: Log the API URL and request data
     console.log('API_BASE_URL:', API_BASE_URL);
-    console.log('Request URL:', `${API_BASE_URL}/api/contact-us`);
+    console.log('Request URL:', `${API_BASE_URL}/api/contact/contact-us`);
     console.log('Form data:', {
       name: formData.name.trim(),
       email: formData.email.trim(),
