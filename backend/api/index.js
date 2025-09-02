@@ -340,7 +340,7 @@ app.use(async (req, res, next) => {
 // API Routes
 app.use("/api/images", imageRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/contact", contactRoutes);
+app.use("/", contactRoutes);
 
 // Static + SPA handling
 const __filename = fileURLToPath(import.meta.url);

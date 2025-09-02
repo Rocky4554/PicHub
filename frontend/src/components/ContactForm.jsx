@@ -76,7 +76,7 @@ const ContactForm = () => {
 
     // Debug: Log the API URL and request data
     console.log('API_BASE_URL:', API_BASE_URL);
-    console.log('Request URL:', `${API_BASE_URL}/api/contact/contact-us`);
+    console.log('Request URL:', `${API_BASE_URL}/api/contact-us`);
     console.log('Form data:', {
       name: formData.name.trim(),
       email: formData.email.trim(),
@@ -84,7 +84,7 @@ const ContactForm = () => {
     });
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/contact/contact-us`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact-us`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
